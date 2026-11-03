@@ -228,7 +228,7 @@ $('#voice').onclick=e=>{const v=e.target.dataset.v;if(v){S.voice=v;save();loadVo
 
 /* ---------- 听书 ---------- */
 function loadVoices(){
-  const all=speechSynthesis.getVoices(),zh=all.filter(v=>/^zh/i.test(v.lang));
+  const all=speechSynthesis.getVoices(),zh=all.filter(v=>/^zh[-_]CN/i.test(v.lang));
   const rank=v=>/Natural|Online|Xiao|Yun|Ting|Mei|Google/i.test(v.name)?0:1;
   voices=(zh.length?zh:all).sort((a,b)=>rank(a)-rank(b)).slice(0,2);
   if(!voices.find(v=>v.name==S.voice))S.voice=voices[0]?voices[0].name:'';
